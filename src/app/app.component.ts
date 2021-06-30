@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'xgenrap';
+  messages = this.http.get<any[]>('http://localhost:4201');
+
+  constructor(private http: HttpClient) { }
+
+  post() {
+    this.http.post<any>('http://localhost:4201/users', {username: 'Claude', password: 'Claude'})
+    .subscribe(next => console.log(next));
+  }
 }
