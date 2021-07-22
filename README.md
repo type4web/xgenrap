@@ -9,7 +9,7 @@ yarn add ts-node-dev --dev
 ## After run structure:
 XGENRAP > http://localhost:4200 > FrontEnd  <br />
 |- server > http://localhost:4201 > BackEnd  <br />
-    |- server.ts - configuration to DB Oracle  <br />
+|- server.ts - configuration to DB Oracle  <br />
 
 
 
