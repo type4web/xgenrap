@@ -1,9 +1,9 @@
 # Xgenrap
 
-> run serwer:\
+> run serwer: \
 ng serve --open or yarn serve 
 
-> install\ 
+> install \ 
 yarn add ts-node-dev --dev
 
 ## After run structure:
@@ -19,13 +19,13 @@ from https://www.oracle.com/database/technologies/instant-client/winx64-64-downl
 
 2. Unpack in C:\oracle\instantclient_11_2
 
-3. In server.ts add:
-try {
-  oracledb.initOracleClient({libDir: 'C:\\oracle\\instantclient_11_2'});
-} catch (err) {
-  console.error('Whoops!');
-  console.error(err);
-  process.exit(1);
+3. In server.ts add: \
+try { \
+  oracledb.initOracleClient({libDir: 'C:\\oracle\\instantclient_11_2'}); \
+} catch (err) { \
+  console.error('Whoops!'); \
+  console.error(err); \
+  process.exit(1); \
 }
 
 #*******************************************************************************************************************
