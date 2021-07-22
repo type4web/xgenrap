@@ -1,6 +1,50 @@
 const express = require('express');
 const app  = express();
-//const routers = require('./routers');
+const oracledb = require('oracledb');
+const config = require('./dbConfig.ts');
+
+try {
+  oracledb.initOracleClient({libDir: 'C:\\oracle\\instantclient_11_2'});
+} catch (err) {
+  console.error('Whoops!');
+  console.error(err);
+  process.exit(1);
+}
+
+
+async function runConnect() {
+    let conn;
+  
+    try {
+      console.log('Connect: ');
+      conn = await oracledb.getConnection({
+        user :  "test",
+        password :  "********",
+        connectString : "localhost:1521/DB"
+    });
+  
+      const result = await conn.execute(
+        'select current_timestamp from dual'
+      );
+  
+      console.log('Select(ks): ');
+      console.log(result);
+
+    } catch (err) {
+      console.log('SelectErr(ks): ');
+      console.error(err);
+    } finally {
+      if (conn) {
+        try {
+          await conn.close();
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    }
+  }
+  
+  runConnect();
 
 // Allow any method from any host and log requests
 app.use((req: any, res: any, next: any) => {
