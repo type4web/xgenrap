@@ -1,12 +1,32 @@
 # Xgenrap
 
 > run serwer:
-ng serve --open
+ng serve --open or yarn serve 
 
 > install 
 yarn add ts-node-dev --dev
 
+## After run structure:
+XGENRAP > http://localhost:4200 > FrontEnd
+|- server > http://localhost:4201 > BackEnd
+    |- server.ts - configuration to DB Oracle
 
+# Install oracle: 
+1. Download instantclient-basic-windows.x64-11.2.0.4.0.zip 
+from https://www.oracle.com/database/technologies/instant-client/winx64-64-downloads.html     
+
+2. Unpack in C:\oracle\instantclient_11_2
+
+3. In server.ts add:
+try {
+  oracledb.initOracleClient({libDir: 'C:\\oracle\\instantclient_11_2'});
+} catch (err) {
+  console.error('Whoops!');
+  console.error(err);
+  process.exit(1);
+}
+
+#**********************************************8
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

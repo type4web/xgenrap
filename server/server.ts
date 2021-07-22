@@ -1,7 +1,6 @@
 const express = require('express');
 const app  = express();
 const oracledb = require('oracledb');
-const config = require('./dbConfig.ts');
 
 try {
   oracledb.initOracleClient({libDir: 'C:\\oracle\\instantclient_11_2'});
@@ -17,21 +16,23 @@ async function runConnect() {
   
     try {
       console.log('Connect: ');
-      conn = await oracledb.getConnection({
+
+
+      /*conn = await oracledb.getConnection({
         user :  "test",
         password :  "********",
         connectString : "localhost:1521/DB"
-    });
+      });*/
   
       const result = await conn.execute(
         'select current_timestamp from dual'
       );
   
-      console.log('Select(ks): ');
+      console.log('(ks)>Connection with DB test: ');
       console.log(result);
 
     } catch (err) {
-      console.log('SelectErr(ks): ');
+      console.log('(ks)>Error:Connection with DB test: ');
       console.error(err);
     } finally {
       if (conn) {
