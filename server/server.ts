@@ -20,7 +20,7 @@ async function runConnect() {
       conn = await oracledb.getConnection(configDB);
   
       const result = await conn.execute(
-        'select current_timestamp from dual'
+        'select \'select to DB\' from dual'
       );
   
       console.log('(ks)>Connection with DB test: ');
@@ -46,10 +46,7 @@ async function runConnect() {
 
     try {
       conn = await oracledb.getConnection(configDB);
-      const result = await conn.execute(
-        'select current_timestamp from dual'
-      );
-      return result;
+      return await conn.execute('select current_timestamp from dual');
     } catch (err) {
       console.error(err);
     } finally {
@@ -81,7 +78,7 @@ app.use((req: any, res: any, next: any) => {
 // Handle POST requests that come in formatted as JSON
 app.use(express.json());
 
-//app.use('/', routers);
+/**app.use('/', routers);*/
 
 app.get('/', (req: any, res: any) => { res.send([{message: 'http://localhost:4201/ >> OK'}]); });
 app.get('/users', (req: any, res: any) => { res.send([])});

@@ -1,4 +1,5 @@
-/*module.exports = {
+
+/**module.exports = {
     user          : 'test',
     password      : '******',
     connectString : 'localhost:1521/DB',
