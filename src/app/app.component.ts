@@ -7,8 +7,9 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'xgenrap';
+  title = 'xgenrap CheckList:';
   messages = this.http.get<any[]>('http://localhost:4201');
+  times =  this.http.get<any[]>('http://localhost:4201/time');
 
   constructor(private http: HttpClient) { }
 

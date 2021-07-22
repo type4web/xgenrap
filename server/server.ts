@@ -1,6 +1,8 @@
 const express = require('express');
 const app  = express();
 const oracledb = require('oracledb');
+const configDB = require('./dbConfig.ts');
+let conn: any;
 
 try {
   oracledb.initOracleClient({libDir: 'C:\\oracle\\instantclient_11_2'});
@@ -12,17 +14,10 @@ try {
 
 
 async function runConnect() {
-    let conn;
   
     try {
       console.log('Connect: ');
-
-
-      /*conn = await oracledb.getConnection({
-        user :  "test",
-        password :  "********",
-        connectString : "localhost:1521/DB"
-      });*/
+      conn = await oracledb.getConnection(configDB);
   
       const result = await conn.execute(
         'select current_timestamp from dual'
@@ -44,8 +39,30 @@ async function runConnect() {
       }
     }
   }
-  
   runConnect();
+
+
+  async function getTime() {
+
+    try {
+      conn = await oracledb.getConnection(configDB);
+      const result = await conn.execute(
+        'select current_timestamp from dual'
+      );
+      return result;
+    } catch (err) {
+      console.error(err);
+    } finally {
+      if (conn) {
+        try {
+          await conn.close();
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    }
+
+  }  
 
 // Allow any method from any host and log requests
 app.use((req: any, res: any, next: any) => {
@@ -66,11 +83,21 @@ app.use(express.json());
 
 //app.use('/', routers);
 
-app.get('/', (req: any, res: any) => { res.send([{message: 'hello world'}]); });
+app.get('/', (req: any, res: any) => { res.send([{message: 'http://localhost:4201/ >> OK'}]); });
 app.get('/users', (req: any, res: any) => { res.send([])});
 app.post('/users', (req: any, res: any) => { 
     console.log(req.body);
     res.send({body: req.body});  
+});
+
+
+
+app.get('/time', (req: any, res: any) => { 
+  const currentTime = getTime();
+  currentTime.then((value) => {
+    console.log(value.rows);
+    res.send([{time: value.rows[0] + ' >>> Get Time form ataBase OK'}])
+  });
 });
 
 
