@@ -1,9 +1,9 @@
 # Xgenrap
 
-> run serwer:
+> run serwer:\
 ng serve --open or yarn serve 
 
-> install 
+> install\ 
 yarn add ts-node-dev --dev
 
 ## After run structure:
