@@ -3,15 +3,15 @@
 > run serwer: \
 ng serve --open or yarn serve 
 
-> install \ 
+> install <br /> 
 yarn add ts-node-dev --dev
 
 ## After run structure:
-XGENRAP > http://localhost:4200 > FrontEnd
+XGENRAP > http://localhost:4200 > FrontEnd  <br />
+|- server > http://localhost:4201 > BackEnd  <br />
+    |- server.ts - configuration to DB Oracle  <br />
 
-|- server > http://localhost:4201 > BackEnd
 
-    |- server.ts - configuration to DB Oracle
 
 # Install oracle: 
 1. Download instantclient-basic-windows.x64-11.2.0.4.0.zip 
@@ -28,7 +28,7 @@ try { \
   process.exit(1); \
 }
 
-#*******************************************************************************************************************
+*******************************************************************************************************************
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
