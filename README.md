@@ -8,7 +8,9 @@ yarn add ts-node-dev --dev
 
 ## After run structure:
 XGENRAP > http://localhost:4200 > FrontEnd
+
 |- server > http://localhost:4201 > BackEnd
+
     |- server.ts - configuration to DB Oracle
 
 # Install oracle: 
@@ -26,7 +28,7 @@ try {
   process.exit(1);
 }
 
-#**********************************************8
+#*******************************************************************************************************************
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
